@@ -69,6 +69,26 @@ const ProfileForm = (props: Props) => {
         )}
       />
 
+      <FormField
+        control={form.control}
+        name="language"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel className="text-lg">
+              Language
+            </FormLabel>
+            <FormControl>
+              <Input
+                placeholder="English"
+                type="select"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
       <Button
         type="submit"
         className="self-start bg-white hover:bg-[#2F006B] hover:text-white"

@@ -1,9 +1,26 @@
+'use client'
+
 import React from 'react'
 
 import ProfileForm from '@/components/forms/profile-form'
 import ProfilePicture from './_components/profile-picture'
 
 const SettingsPage = () => {
+  const removeProfileImage = async () => {
+    'use server'
+
+    const response = await db.user.update({
+      where: {
+        clerkId: authUser.id
+      },
+      data: {
+        profileImage: ''
+      }
+    })
+
+    return response
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="flex sticky top-0 z-[10] p-6 bg-background/50 backdrop-blur-lg items-center justify-between border-b text-4xl">
@@ -21,7 +38,7 @@ const SettingsPage = () => {
         <ProfilePicture
           onDelete={removeProfileImage}
           userImage={user?.profileImage || ''}
-          onUpload={user?.profileImage || ''}
+          onUpload={uploadProfileImage}
         />
         <ProfileForm />
       </div>
